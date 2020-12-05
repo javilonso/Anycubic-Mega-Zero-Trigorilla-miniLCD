@@ -52,8 +52,8 @@
 #define TRIGORILLA_HEATER_1_PIN               45  // Anycubic Kossel: Unused
 
 #define TRIGORILLA_FAN0_PIN                    9  // Anycubic Kossel: Usually the part cooling fan
-#define TRIGORILLA_FAN1_PIN                    7  // Anycubic Kossel: Unused
-#define TRIGORILLA_FAN2_PIN                   44  // Anycubic Kossel: Hotend fan
+#define TRIGORILLA_FAN1_PIN                  44  // Anycubic Kossel: Unused
+#define TRIGORILLA_FAN2_PIN                   -1  // Anycubic Kossel: Hotend fan
 
 // Remap MOSFET pins to common usages:
 
