@@ -71,7 +71,7 @@
 // @section info
 
 // Author info of this build printed to the host during boot and M115
-#define STRING_CONFIG_H_AUTHOR "(Javi)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "(javilonso)" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
 /**
@@ -131,6 +131,8 @@
 #ifndef MOTHERBOARD
   #define MOTHERBOARD BOARD_TRIGORILLA_14
 #endif
+
+#define KILL_PIN -1 //mini 12864 Javi
 
 // Name displayed in the LCD "Ready" message and Info menu
 #define CUSTOM_MACHINE_NAME "Anycubic Mega Zero - Trigorilla"
@@ -415,7 +417,7 @@
 #define TEMP_SENSOR_5 0
 #define TEMP_SENSOR_6 0
 #define TEMP_SENSOR_7 0
-#define TEMP_SENSOR_BED 1
+#define TEMP_SENSOR_BED 0
 #define TEMP_SENSOR_PROBE 0
 #define TEMP_SENSOR_CHAMBER 0
 
@@ -483,10 +485,11 @@
                                   // is more than PID_FUNCTIONAL_RANGE then the PID will be shut off and the heater will be set to min/max.
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
-  // Creality Ender-3
-  #define DEFAULT_Kp 21.73
-  #define DEFAULT_Ki 1.54
-  #define DEFAULT_Kd 76.55
+  // Mega Zero
+  #define DEFAULT_Kp 23.87
+  #define DEFAULT_Ki 2.07
+  #define DEFAULT_Kd 68.92
+
 
 #endif // PIDTEMP
 
@@ -723,7 +726,7 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 385 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {172, 172, 400, 819.14 }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -1043,20 +1046,20 @@
 
 // @section extruder
 
-#define DISABLE_E false              // For all extruders
+#define DISABLE_E false             // For all extruders
 //#define DISABLE_INACTIVE_EXTRUDER   // Keep only the active extruder enabled
 
 // @section machine
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-#define INVERT_X_DIR true
+#define INVERT_X_DIR false
 #define INVERT_Y_DIR true
 #define INVERT_Z_DIR true
 
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#define INVERT_E0_DIR false
+#define INVERT_E0_DIR true
 #define INVERT_E1_DIR false
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
@@ -1440,7 +1443,7 @@
 #define EEPROM_CHITCHAT       // Give feedback on EEPROM commands. Disable to save PROGMEM.
 #define EEPROM_BOOT_SILENT    // Keep M503 quiet and only give errors during first load
 #if ENABLED(EEPROM_SETTINGS)
-  //#define EEPROM_AUTO_INIT  // Init EEPROM automatically on any errors.
+  #define EEPROM_AUTO_INIT  // Init EEPROM automatically on any errors.
 #endif
 
 //
@@ -1467,8 +1470,8 @@
 
 // Preheat Constants
 #define PREHEAT_1_LABEL       "PLA"
-#define PREHEAT_1_TEMP_HOTEND 185
-#define PREHEAT_1_TEMP_BED     45
+#define PREHEAT_1_TEMP_HOTEND 195
+#define PREHEAT_1_TEMP_BED     50
 #define PREHEAT_1_FAN_SPEED   255 // Value from 0 to 255
 
 #define PREHEAT_2_LABEL       "ABS"
@@ -1591,7 +1594,7 @@
  *
  * View the current statistics with M78.
  */
-#define PRINTCOUNTER
+//#define PRINTCOUNTER
 
 //=============================================================================
 //============================= LCD and SD support ============================
@@ -1633,7 +1636,7 @@
  *
  * :['JAPANESE', 'WESTERN', 'CYRILLIC']
  */
-#define DISPLAY_CHARSET_HD44780 JAPANESE
+#define DISPLAY_CHARSET_HD44780 WESTERN
 
 /**
  * Info Screen Style (0:Classic, 1:Prusa)
@@ -1683,13 +1686,13 @@
 // This option overrides the default number of encoder pulses needed to
 // produce one step. Should be increased for high-resolution encoders.
 //
-#define ENCODER_PULSES_PER_STEP 4
+//#define ENCODER_PULSES_PER_STEP 4
 
 //
 // Use this option to override the number of step signals required to
 // move between next/prev menu items.
 //
-#define ENCODER_STEPS_PER_MENU_ITEM 1
+//#define ENCODER_STEPS_PER_MENU_ITEM 1
 
 /**
  * Encoder Direction Options
@@ -1737,7 +1740,7 @@
 // If you have a speaker that can produce tones, enable it here.
 // By default Marlin assumes you have a buzzer with a fixed frequency.
 //
-#define SPEAKER
+//#define SPEAKER
 
 //
 // The duration and frequency for the UI feedback sound.
@@ -1746,8 +1749,8 @@
 // Note: Test audio output with the G-Code:
 //  M300 S<frequency Hz> P<duration ms>
 //
-#define LCD_FEEDBACK_FREQUENCY_DURATION_MS 2
-#define LCD_FEEDBACK_FREQUENCY_HZ 5000
+//#define LCD_FEEDBACK_FREQUENCY_DURATION_MS 2
+//#define LCD_FEEDBACK_FREQUENCY_HZ 5000
 
 //=============================================================================
 //======================== LCD / Controller Selection =========================
@@ -1760,7 +1763,7 @@
 //
 // Note: Usually sold with a white PCB.
 //
-#define REPRAP_DISCOUNT_SMART_CONTROLLER
+//#define REPRAP_DISCOUNT_SMART_CONTROLLER
 
 //
 // Original RADDS LCD Display+Encoder+SDCardReader
@@ -1777,7 +1780,6 @@
 // ULTIPANEL as seen on Thingiverse.
 //
 //#define ULTIPANEL
-//#define NEWPANEL
 
 //
 // PanelOne from T3P3 (via RAMPS 1.4 AUX2/AUX3)
@@ -1971,7 +1973,7 @@
 //#define FYSETC_MINI_12864_X_X    // Type C/D/E/F. No tunable RGB Backlight by default
 //#define FYSETC_MINI_12864_1_2    // Type C/D/E/F. Simple RGB Backlight (always on)
 //#define FYSETC_MINI_12864_2_0    // Type A/B. Discreet RGB Backlight
-//#define FYSETC_MINI_12864_2_1    // Type A/B. Neopixel RGB Backlight
+#define FYSETC_MINI_12864_2_1    // Type A/B. Neopixel RGB Backlight
 //#define FYSETC_GENERIC_12864_1_1 // Larger display with basic ON/OFF backlight.
 
 //
@@ -2194,20 +2196,17 @@
 #endif
 
 // Support for Adafruit Neopixel LED driver
-//#define NEOPIXEL_LED
+#define NEOPIXEL_LED
 #if ENABLED(NEOPIXEL_LED)
-  #define NEOPIXEL_TYPE   NEO_GRB // NEO_GRBW / NEO_GRB - four/three channel driver type (defined in Adafruit_NeoPixel.h)
-  #define NEOPIXEL_PIN     4       // LED driving pin
-  //#define NEOPIXEL2_TYPE NEOPIXEL_TYPE
-  //#define NEOPIXEL2_PIN    5
-  #define NEOPIXEL_PIXELS 30       // Number of LEDs in the strip, larger of 2 strips if 2 neopixel strips are used
-  #define NEOPIXEL_IS_SEQUENTIAL   // Sequential display for temperature change - LED by LED. Disable to change all LEDs at once.
-  #define NEOPIXEL_BRIGHTNESS 127  // Initial brightness (0-255)
-  //#define NEOPIXEL_STARTUP_TEST  // Cycle through colors at startup
-
+  #define NEOPIXEL_TYPE NEO_GRBW // NEO_GRBW / NEO_GRB - four/three channel driver type (defined in Adafruit_NeoPixel.h)
+  //#define NEOPIXEL_PIN 4 // LED driving pin
+  //#define NEOPIXEL_PIXELS 30 // Number of LEDs in the strip
+  //#define NEOPIXEL_IS_SEQUENTIAL // Sequential display for temperature change - LED by LED. Disable to change all LEDs at once.
+  //#define NEOPIXEL_BRIGHTNESS 127 // Initial brightness (0-255)
+  #define NEOPIXEL_STARTUP_TEST // Cycle through colors at startup
   // Use a single Neopixel LED for static (background) lighting
-  //#define NEOPIXEL_BKGD_LED_INDEX  0               // Index of the LED to use
-  //#define NEOPIXEL_BKGD_COLOR { 255, 255, 255, 0 } // R, G, B, W
+  #define NEOPIXEL_BKGD_LED_INDEX 0 // Index of the LED to use - Do not change this setting
+  #define NEOPIXEL_BKGD_COLOR { 0, 255, 0, 0 } // R, G, B, W - We have set green background color as standard
 #endif
 
 /**
